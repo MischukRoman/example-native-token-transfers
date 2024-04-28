@@ -1,5 +1,7 @@
 import { Chain } from "@wormhole-foundation/sdk";
+// @ts-ignore
 import { Ntt } from "@wormhole-foundation/sdk-definitions-ntt";
+// @ts-ignore
 import { NttRoute } from "@wormhole-foundation/sdk-route-ntt";
 type NttContracts = {
   [key in Chain]?: Ntt.Contracts;

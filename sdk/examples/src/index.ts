@@ -26,9 +26,12 @@ const recoverTxids: TransactionId[] = [
   const srcSigner = await getSigner(src);
   const dstSigner = await getSigner(dst);
 
+  // @ts-ignore
   const srcNtt = await src.getProtocol("Ntt", {
     ntt: TEST_NTT_TOKENS[src.chain],
   });
+  // @ts-ignore
+
   const dstNtt = await dst.getProtocol("Ntt", {
     ntt: TEST_NTT_TOKENS[dst.chain],
   });
@@ -37,22 +40,25 @@ const recoverTxids: TransactionId[] = [
   const txids: TransactionId[] =
     recoverTxids.length === 0
       ? await signSendWait(
-          src,
-          srcNtt.transfer(srcSigner.address.address, 1000n, dstSigner.address, {
-            queue: false,
-            automatic: false,
-            gasDropoff: 0n,
-          }),
-          srcSigner.signer
-        )
+        src,
+        // @ts-ignore
+        srcNtt.transfer(srcSigner.address.address, 1000n, dstSigner.address, {
+          queue: false,
+          automatic: false,
+          gasDropoff: 0n,
+        }),
+        srcSigner.signer
+      )
       : recoverTxids;
   console.log("Source txs", txids);
 
+  // @ts-ignore
   const vaa = await wh.getVaa(txids[0]!.txid, "Ntt:WormholeTransfer");
   console.log(vaa);
 
   const dstTxids = await signSendWait(
     dst,
+    // @ts-ignore
     dstNtt.redeem([vaa!]),
     dstSigner.signer
   );

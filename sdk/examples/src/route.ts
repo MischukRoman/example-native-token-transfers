@@ -9,6 +9,7 @@ import "@wormhole-foundation/sdk-solana-ntt";
 import {
   nttAutomaticRoute,
   nttManualRoute,
+  // @ts-ignore
 } from "@wormhole-foundation/sdk-route-ntt";
 import { NttTokens } from "./consts.js";
 import { getSigner } from "./helpers.js";
